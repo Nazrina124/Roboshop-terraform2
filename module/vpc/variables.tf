@@ -1,2 +1,3 @@
-variable "cdir" {}
+
+variable "vpc" {}
 variable "env" {}
