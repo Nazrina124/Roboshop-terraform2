@@ -1,5 +1,5 @@
 resource "aws_vpc" "main" {
-  cidr_block = var.cdir
+  cidr_block = var.cidr
 
   tags = {
 
