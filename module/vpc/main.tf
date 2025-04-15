@@ -3,7 +3,7 @@ resource "aws_vpc" "main" {
 
   tags = {
 
-    name = "${var.env}-vpc"
+    Name = "${var.env}-vpc"
 
   }
 }
