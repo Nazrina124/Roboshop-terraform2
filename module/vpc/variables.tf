@@ -1,7 +1,7 @@
 variable "cidr" {}
 variable "env" {}
-varibale "public_subnets" {}
-varibale "web_subnets" {}
-varibale "app_subnets" {}
-varibale "db_subnets" {}
+variable "public_subnets" {}
+variable "web_subnets" {}
+variable "app_subnets" {}
+variable "db_subnets" {}
 variable "availability_zones" {}
