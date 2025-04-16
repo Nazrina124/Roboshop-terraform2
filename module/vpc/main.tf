@@ -16,7 +16,7 @@ resource "aws_subnet" "public" {
   availability_zone = var.availability_zones[count.index]
 
   tags = {
-    Name = "public-subnet-${split("-", "us-east-1a")[2]}"
+    Name = "public-subnet-${split("-", availability_zones[count.index])[2]}"
   }
 }
 
@@ -29,7 +29,7 @@ resource "aws_subnet" "web" {
   availability_zone = var.availability_zones[count.index]
 
   tags = {
-    Name = "web-subnet-${split("-", "us-east-1a")[2]}"
+    Name = "web-subnet-${split("-", availability_zones[count.index])[2]}"
   }
 }
 
@@ -40,7 +40,7 @@ resource "aws_subnet" "app" {
   availability_zone = var.availability_zones[count.index]
 
   tags = {
-    Name = "app-subnet-${split("-", "us-east-1a")[2]}"
+    Name = "app-subnet-${split("-", availability_zones[count.index])[2]}"
   }
 }
 
@@ -51,9 +51,9 @@ resource "aws_subnet" "db" {
   availability_zone = var.availability_zones[count.index]
 
   tags = {
-    Name = "db-subnet-${split("-", "us-east-1a")[2]}"
+    Name = "db-subnet-${split("-", availability_zones[count.index])[2]}"
   }
-}
+} 
 
 ###Route table
 
@@ -63,7 +63,7 @@ resource "aws_route_table" "public" {
 
 
   tags = {
-    Name = "public-rt-${split("-", "us-east-1a")[2]}"
+    Name = "public-rt-${split("-", availability_zones[count.index])[2]}"
   }
 }
 
@@ -73,7 +73,7 @@ resource "aws_route_table" "web" {
 
 
   tags = {
-    Name = "web-rt-${split("-", "us-east-1a")[2]}"
+    Name = "web-rt-${split("-", availability_zones[count.index])[2]}"
   }
 }
 
@@ -83,7 +83,7 @@ resource "aws_route_table" "app" {
 
 
   tags = {
-    Name = "app-rt-${split("-", "us-east-1a")[2]}"
+    Name = "app-rt-${split("-", availability_zones[count.index])[2]}"
   }
 }
 
@@ -93,6 +93,6 @@ resource "aws_route_table" "db" {
 
 
   tags = {
-    Name = "db-rt-${split("-", "us-east-1a")[2]}"
+    Name = "db-rt-${split("-", availability_zones[count.index])[2]}"
   }
 }
