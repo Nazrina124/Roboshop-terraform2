@@ -111,11 +111,7 @@ resource "aws_route_table_association" "web" {
   route_table_id = aws_route_table.public.*.id[count.index]
 }
 
-resource "aws_route_table_association" "public" {
-  count = length(var.public_subnets)
-  subnet_id      = aws_subnet.public.*.id[count.index]
-  route_table_id = aws_route_table.web.*.id[count.index]
-}
+
 
 resource "aws_route_table_association" "app" {
   count = length(var.app_subnets)
