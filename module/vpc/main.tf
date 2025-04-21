@@ -102,13 +102,13 @@ resource "aws_route_table" "db" {
 resource "aws_route_table_association" "public" {
   count = length(var.public_subnets)
   subnet_id      = aws_subnet.public.*.id[count.index]
-  route_table_id = aws_route_table.*.id[count.index]
+  route_table_id = aws_route_table.public*.id[count.index]
 }
 
 resource "aws_route_table_association" "web" {
   count = length(var.web_subnets)
   subnet_id      = aws_subnet.web.*.id[count.index]
-  route_table_id = aws_route_table.public.*.id[count.index]
+  route_table_id = aws_route_table.web.*.id[count.index]
 }
 
 
