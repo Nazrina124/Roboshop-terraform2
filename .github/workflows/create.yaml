@@ -19,33 +19,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Terraform Init
-      - run: terraform init
-      - name: Terraform Destroy
-        run: terraform destroy -var-file=env-dev/main.tfvars -auto-approve
+        run: terraform init -backend-config=env-dev/state.tfvarsig=env-dev/state.tfvars
+      - name: Terraform apply
+        run: terraform apply -var-file=env-dev/main.tfvars -auto-approve
 
 
 
-  # QA:
-  #   runs-on: ubuntu-latest
-  #   environment: qa
-  #   needs: DEV-APPLY
-  #   steps:
-  #     - name: Dummy Job for QA
-  #       run: echo just a dummy job
+  QA:
+    runs-on: ubuntu-latest
+    environment: qa
+    needs: DEV-APPLY
+    steps:
+      - name: Dummy Job for QA
+        run: echo just a dummy job
 
-  # UAT:
-  #  runs-on: ubuntu-latest
-  #  environment: uat
-  #  needs: QA
-  #  steps:
-  #    - name: Dummy Job for UAT
-  #      run: echo just a dummy job
+  UAT:
+   runs-on: ubuntu-latest
+   environment: uat
+   needs: QA
+   steps:
+     - name: Dummy Job for UAT
+       run: echo just a dummy job
 
-  # PROD:
-  #  runs-on: self-hosted
-  #  environment: prod
-  #  needs: UAT
-  #  steps:
-  #    - uses: actions/checkout@v4
-  #    - name: Terraform Init for PROD
-  #      run: terraform init
+  PROD:
+   runs-on: self-hosted
+   environment: prod
+   needs: UAT
+   steps:
+     - uses: actions/checkout@v4
+     - name: Terraform Init for PROD
+       run: terraform init
