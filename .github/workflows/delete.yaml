@@ -1,12 +1,34 @@
-name: Destroy
-on: [workflow_dispatch]
+# name: Destroy
+# on: [workflow_dispatch]
 
+# jobs:
+#   DEV-APPLY:
+#     runs-on: self-hosted
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Terraform Init
+#         run: terraform init -backend-config=env-dev/state.tfvars
+#       - name: Terraform Destroy
+#         run: terraform destroy -var-file=env-dev/main.tfvars -auto-approve
+
+
+name: Remove Roboshop Infrastructure
+on: [workflow_dispatch]
 jobs:
-  DEV-APPLY:
+
+  DEV:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Terraform Init
-        run: terraform init -backend-config=env-dev/state.tfvarsig=env-dev/state.tfvars
+        run: terraform init -backend-config=env-dev/state.tfvars
       - name: Terraform Destroy
         run: terraform destroy -var-file=env-dev/main.tfvars -auto-approve
+  PROD:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Terraform Init
+        run: terraform init -backend-config=env-prod/state.tfvars
+      - name: Terraform Destroy
+        run: terraform destroy -var-file=env-prod/main.tfvars -auto-approve
