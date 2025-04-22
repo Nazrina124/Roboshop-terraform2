@@ -167,11 +167,12 @@ resource "aws_eip" "igw-ip" {
 
 resource "aws_nat_gateway" "main" {
   count =length(var.availability_zones)
-  allocation_id = aws_eip.igw-ip.*.id[count.index].id
-  subnet_id     = aws_subnet.public.*.id[count.index]id
-}
+  allocation_id = aws_eip.igw-ip.*.id[count.index]
+  subnet_id     = aws_subnet.public.*.id[count.index]
+
 
   tags = {
     Name = "nat-gt-${split("-", var.availability_zones[count.index])[2]}"
   }
+}
 
