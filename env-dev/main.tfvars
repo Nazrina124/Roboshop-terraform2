@@ -9,5 +9,5 @@ vpc ={
     availability_zones = ["us-east-1a" , "us-east-1b"]
     vpc_default_id = "vpc-0b3bc4ea0b05389f7"
     vpc_default_rt = "rtb-0c6f868328545ca7b"
-    vpc_default_cidr "172.31.16.0/20"   
+    vpc_default_cidr = "172.31.16.0/20"   
 }
