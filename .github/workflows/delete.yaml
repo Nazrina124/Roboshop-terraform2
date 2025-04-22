@@ -1,4 +1,4 @@
-name: Provision Roboshop infrastructure
+name: Rmoval infrastructure
 
 on: [workflow_dispatch]
 
