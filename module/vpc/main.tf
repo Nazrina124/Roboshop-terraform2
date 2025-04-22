@@ -2,12 +2,13 @@
 resource "aws_vpc" "main" {
   cidr_block = var.cidr
 
-  tags = 
+  tags = {
 
     Name = "${var.env}-vpc"
-
+  }
   }
 
+##subnets
 
 resource "aws_subnet" "public" {
   count             = length(var.public_subnets)
@@ -20,7 +21,7 @@ resource "aws_subnet" "public" {
   }
 }
 
-##subnets
+
 
 resource "aws_subnet" "web" {
   count             = length(var.web_subnets)
