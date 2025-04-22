@@ -77,7 +77,7 @@ resource "aws_route_table" "public" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    vpc_peering_connection = aws_vpc_peering_connection.main.id
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
 
@@ -98,7 +98,7 @@ resource "aws_route_table" "web" {
 
    route {
     cidr_block = "0.0.0.0/0"
-    vpc_peering_connection = aws_vpc_peering_connection.main.id
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
 
@@ -118,7 +118,7 @@ route {
 
  route {
     cidr_block = "0.0.0.0/0"
-    vpc_peering_connection = aws_vpc_peering_connection.main.id
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
 
@@ -139,7 +139,7 @@ route {
 
  route {
     cidr_block = "0.0.0.0/0"
-    vpc_peering_connection = aws_vpc_peering_connection.main.id
+    vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
   tags = {
