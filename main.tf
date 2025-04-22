@@ -9,3 +9,4 @@ module "vpc" {
   db_subnets = var.vpc["db_subnets"]
   availability_zones = var.vpc["availability_zones"]
 }
+
