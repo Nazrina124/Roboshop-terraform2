@@ -11,7 +11,7 @@ resource "aws_vpc" "main" {
 ###peering
 
 resource "aws_vpc_peering_connection" "main" {
-  peer_owner_id = aws_vpc.main.id
+  peer_vpc_id = aws_vpc.main.id
   vpc_id        = var.vpc_default_id
   auto_accept   = true
 }
