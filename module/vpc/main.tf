@@ -86,7 +86,7 @@ resource "aws_route_table" "public" {
   }
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.vpc_default_cidr
     vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
@@ -107,7 +107,7 @@ resource "aws_route_table" "web" {
   }
 
    route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.vpc_default_cidr
     vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
@@ -126,11 +126,10 @@ route {
     nat_gateway_id = aws_nat_gateway.main.*.id[count.index]
   }
 
- route {
-    cidr_block = "0.0.0.0/0"
+route {
+    cidr_block = var.vpc_default_cidr
     vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
-
 
 
   tags = {
@@ -147,8 +146,8 @@ route {
     nat_gateway_id = aws_nat_gateway.main.*.id[count.index]
   }
 
- route {
-    cidr_block = "0.0.0.0/0"
+route {
+    cidr_block = var.vpc_default_cidr
     vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
