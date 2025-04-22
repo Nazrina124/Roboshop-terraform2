@@ -1,10 +1,8 @@
-name: Rmoval infrastructure
-
+name: Destroy
 on: [workflow_dispatch]
 
 jobs:
- 
-  DEV:
+  DEV-APPLY:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
@@ -12,16 +10,3 @@ jobs:
         run: terraform init -backend-config=env-dev/state.tfvarsig=env-dev/state.tfvars
       - name: Terraform Destroy
         run: terraform destroy -var-file=env-dev/main.tfvars -auto-approve
-
-
-
-
-  # PROD:
-  #  runs-on: self-hosted
-  #  steps:
-  #    - uses: actions/checkout@v4
-  #    - name: Terraform Init for Prod
-  #      run: terraform init
-  #    - name: Terraform Destroy
-  #      run: terraform destroy -var-file=env-dev/main.tfvars -auto-approve
-       
