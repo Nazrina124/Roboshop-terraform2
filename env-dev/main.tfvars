@@ -16,7 +16,7 @@ vpc ={
 
 ec2 = {
     frontend = {
-        subnet_ref = "web"
+ 
         instance_type = "t2.micro"
         allow_port = 80
         allow_sg_cidr = ["10.10.0.0/24" , "10.10.1.0/24"]
