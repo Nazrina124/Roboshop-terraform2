@@ -8,3 +8,4 @@
     variable "vpc_id" {}
     variable "env" {}
     variable "bastion_nodes" {}
+    variable "ec2" {}
