@@ -15,7 +15,7 @@ module "vpc" {
  module "ec2" {
     source = "./module/ec2"
 
-    for each = var.ec2
+    for_each = var.ec2
     name    = each.key
     instance_type = each.value["instance_type"]
     allow_port = each.value["allow_sg_cidr"]
