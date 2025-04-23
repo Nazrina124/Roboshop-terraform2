@@ -15,7 +15,7 @@ vpc ={
 
 
 ec2 = {
-    frontend ={
+    frontend = {
         subnet_ref = "web"
         instance_type = "t2.micro"
         allow_port = 80
