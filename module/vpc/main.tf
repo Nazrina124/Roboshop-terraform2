@@ -214,3 +214,9 @@ resource "aws_nat_gateway" "main" {
   }
 }
 
+
+resource "aws_launch_template" "foo" {
+  name = "${var.name}-${var.env}-lt"
+
+}
+

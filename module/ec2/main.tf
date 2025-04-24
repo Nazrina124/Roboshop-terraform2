@@ -27,8 +27,18 @@ ingress {
 
   }
 
-
   tags = {
     Name = "${var.name}-${var.env}-sg"
   }
+}
+
+resource "aws_launch_template" "main" {
+    name = "${var.name}-${var.env}-lt"
+    image_id = data.aws_ami.rhel9.image.id
+    instance_type = var.instance_type
+    vpc_security_group_ids = [aws_security_group.allow_tls.id]
+
+tags = {
+    Name = "${var.name}-${var.env}-sg"
+  }  
 }
