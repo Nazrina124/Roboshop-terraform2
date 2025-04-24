@@ -42,3 +42,16 @@ tags = {
     Name = "${var.name}-${var.env}-sg"
   }  
 }
+
+resource "aws_autoscaling_group" "main" {
+  name = "${var.name}-${var.env}-asg"  
+  desired_capacity   = var.capacity["desired"]
+  max_size           = var.capacity["max"]
+  min_size           = var.capacity["min"]
+  vpc_zone_identifier = var.subnets_ids
+
+  launch_template {
+    id      = aws_launch_template.main.id
+    version = "$Latest"
+  }
+}
