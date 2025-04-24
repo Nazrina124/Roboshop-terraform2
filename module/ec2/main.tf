@@ -57,8 +57,7 @@ resource "aws_autoscaling_group" "main" {
 }
 
 tag {
-  key       = "Name"
-  propagate_at_launch = true
+  key                 = "Name"
   value               = "${var.name}-${var.env}-asg"
-
+  propagate_at_launch = true
 }
