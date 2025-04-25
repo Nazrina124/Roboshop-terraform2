@@ -11,7 +11,7 @@ jobs:
       - name: Terraform Init
         run: terraform init -backend-config=env-dev/state.tfvars
       - name: Terraform destroy
-        run: terraform destroy -var-file=env-dev/main.tfvars -auto-approve var vault_token ${{ secrets.Vault_token }}
+        run: terraform destroy -var-file=env-dev/main.tfvars -auto-approve -var vault_token ${{ secrets.Vault_token }}
 
 
 
