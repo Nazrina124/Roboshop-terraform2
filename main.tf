@@ -15,7 +15,7 @@ module "vpc" {
  module "apps" {
     source = "./module/ec2"
 
-    for_each      = var.ec2
+    for_each      = var.apps
    name          = each.key
    instance_type = each.value["instance_type"]
    allow_port    = each.value["allow_port"]
@@ -25,6 +25,24 @@ module "vpc" {
    vpc_id        = module.vpc.vpc_id
    env           = var.env
    bastion_nodes = var.bastion_nodes
+   vault_token    = var.vault_token
+   asg          = true
+ }
+
+ module "db" {
+    source = "./module/ec2"
+
+    for_each      = var.db
+   name          = each.key
+   instance_type = each.value["instance_type"]
+   allow_port    = each.value["allow_port"]
+   allow_sg_cidr = each.value["allow_sg_cidr"]
+   subnets_ids   = module.vpc.subnets_id[each.value["subnet_ref"]]
+   vpc_id        = module.vpc.vpc_id
+   env           = var.env
+   bastion_nodes = var.bastion_nodes
+   vault_token    = var.vault_token
+   asg          = false
  }
 
    

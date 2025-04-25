@@ -33,6 +33,7 @@ ingress {
 }
 
 resource "aws_launch_template" "main" {
+    count = var.asg ? 1 : 0
     name = "${var.name}-${var.env}-lt"
     image_id = data.aws_ami.rhel9.image_id
     instance_type = var.instance_type
@@ -44,6 +45,7 @@ tags = {
 }
 
 resource "aws_autoscaling_group" "main" {
+  count = var.asg ? 1 : 0
   name = "${var.name}-${var.env}-asg"  
   desired_capacity   = var.capacity["desired"]
   max_size           = var.capacity["max"]
@@ -51,7 +53,7 @@ resource "aws_autoscaling_group" "main" {
   vpc_zone_identifier = var.subnets_ids
 
   launch_template {
-    id      = aws_launch_template.main.id
+    id      = aws_launch_template.main.*.id[0]
     version = "$Latest"
 
   }
@@ -62,4 +64,29 @@ resource "aws_autoscaling_group" "main" {
   propagate_at_launch = true
  }
 }
+
+resourse "aws_instance" "main" {
+    count = asg ? 0 : 1
+    ami = "aws_ami.rhel9.image_id"
+    instance_type = var.instance_type
+    subnet_id = var.subnets_ids[0]
+    vpc_security_group_ids = [aws_security_group.allow_tls.id]
+    userdata = base64encode(templatefile("${path.module}/userdata.sh"
+        env = var.env
+        role_name = var.name
+        vault_token = var.vault_token
+
+    
+    ))
+
+
+
+tags = {
+    Name = "${var.name}-${var.env}-sg"
+  } 
+
+} 
+
+
+
 
