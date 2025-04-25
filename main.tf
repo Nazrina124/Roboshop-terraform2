@@ -13,6 +13,7 @@ module "vpc" {
   default_vpc_cidr = var.vpc["default_vpc_cidr"]   
 }
  module "apps" {
+    depends_on = [module.db]
     source = "./module/ec2"
 
     for_each      = var.apps
