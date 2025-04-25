@@ -32,19 +32,19 @@ ec2 = {
 }
 
 db = {
-    mongo {
+    mongo = {
     subnet_ref = "db"
     instance_type = "t2.micro"
     allow_port    = 27107
     allow_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]
     }
-    rabbitmq {
+    rabbitmq = {
     subnet_ref = "db"
     instance_type = "t2.micro"
     allow_port    = 3306
     allow_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]
     }
-    redis {
+    redis = {
     subnet_ref = "db"
     instance_type = "t2.micro"
     allow_port    = 6379
