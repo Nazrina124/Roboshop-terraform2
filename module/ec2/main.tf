@@ -66,7 +66,6 @@ resource "aws_autoscaling_group" "main" {
 }
 
 resource "aws_instance" "main" {
-    count = asg ? 0 : 1
     ami = "aws_ami.rhel9.image_id"
     instance_type = var.instance_type
     subnet_id = var.subnets_ids[0]
