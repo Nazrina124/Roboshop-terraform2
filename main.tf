@@ -20,7 +20,7 @@ module "vpc" {
    instance_type = each.value["instance_type"]
    allow_port    = each.value["allow_port"]
    allow_sg_cidr = each.value["allow_sg_cidr"]
-   subnets_ids   = module.vpc.subnet_ids[each.value["subnet_ref"]]
+   subnets_ids   = module.vpc.subnets[each.value["subnet_ref"]]
    capacity      = each.value["capacity"]
    vpc_id        = module.vpc.vpc_id
    env           = var.env
@@ -37,7 +37,7 @@ module "vpc" {
    instance_type = each.value["instance_type"]
    allow_port    = each.value["allow_port"]
    allow_sg_cidr = each.value["allow_sg_cidr"]
-   subnets_ids   = module.vpc.subnets_ids[each.value["subnet_ref"]]
+   subnets_ids   = module.vpc.subnets[each.value["subnet_ref"]]
    vpc_id        = module.vpc.vpc_id
    env           = var.env
    bastion_nodes = var.bastion_nodes
