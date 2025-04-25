@@ -12,14 +12,14 @@ resource "aws_vpc" "main" {
 
 resource "aws_vpc_peering_connection" "main" {
   peer_vpc_id = aws_vpc.main.id
-  vpc_id        = var.vpc_default_id
+  vpc_id        = var.default_vpc_id
   auto_accept   = true
 }
 
 
 ###Route
 resource "aws_route" "default-vpc-peer-route" {
-  route_table_id            = var.vpc_default_rt
+  route_table_id            = var.default_vpc_rt
   destination_cidr_block    = var.cidr
   vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   
