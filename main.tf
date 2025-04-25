@@ -26,7 +26,7 @@ module "vpc" {
    vpc_id        = module.vpc.vpc_id
    env           = var.env
    bastion_nodes = var.bastion_nodes
-   vault_token    = var.VAULT_TOKEN
+   vault_token    = var.vault_token
    asg          = true
  }
 
@@ -43,7 +43,7 @@ module "vpc" {
    vpc_id        = module.vpc.vpc_id
    env           = var.env
    bastion_nodes = var.bastion_nodes
-   vault_token    = var.VAULT_TOKEN
+   vault_token    = var.vault_token
    asg          = false
  }
 

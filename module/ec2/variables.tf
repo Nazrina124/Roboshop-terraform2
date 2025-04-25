@@ -13,5 +13,5 @@
         default = {}
     }
     variable "asg" {}
-    variable "VAULT_TOKEN" {}
+    variable "vault_token" {}
  

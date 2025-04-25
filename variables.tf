@@ -1,7 +1,7 @@
 variable "vpc" {}
 variable "env" {}
 variable "bastion_nodes" {}
-variable "VAULT_TOKEN" {}
+variable "vault_token" {}
 variable "apps" {}
 variable "db" {}
 
