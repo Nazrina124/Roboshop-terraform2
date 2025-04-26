@@ -1,4 +1,5 @@
 module "vpc" {
+    subnet_ids 
   source = "./module/vpc"
 
   cidr               = var.vpc["cidr"]                                                                           
