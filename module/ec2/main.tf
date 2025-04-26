@@ -137,7 +137,7 @@ ingress {
 
 resource "aws_lb" "main" {
   count = var.asg ? 1 : 0
-  name               = "${var.name}.${var.env}"
+  name               = "${var.name}.${var.env}-alb"
   internal           = true
   load_balancer_type = "application"
   security_groups    = [aws_security_groug.load-balancer.*.id[count.index]]  ####create security group for load balncer###
@@ -148,6 +148,16 @@ resource "aws_lb" "main" {
   tags = {
     Environment = "{var.name}-${var.env}"
   }
+}
+
+
+####target group
+resource "aws_lb_target_group" "main" {
+  count ? 1 : 0
+  name     = "${var.name}.${var.env}-lb-tg"
+  port     = var.allow_port
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id       
 }
 
 

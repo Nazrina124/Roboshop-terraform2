@@ -1,7 +1,7 @@
 module "vpc" {
   source = "./module/vpc"
 
-  cidr               = var.vpc["cidr"]
+  cidr               = var.vpc["cidr"]                                                                           
   env                = var.env
   public_subnets = var.vpc["public_subnets"]
   app_subnets = var.vpc["app_subnets"]
