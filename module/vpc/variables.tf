@@ -1,6 +1,6 @@
 variable "cidr" {}
 variable "env" {}
-variable "subnet_ids" {}
+variable "subnets_ids" {}
 variable "public_subnets" {}
 variable "web_subnets" {}
 variable "app_subnets" {}
