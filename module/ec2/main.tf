@@ -147,7 +147,7 @@ resource "aws_lb" "main" {
 
 
   tags = {
-    Environment = "{var.name}-${var.env}"
+    Environment = "${var.name}-${var.env}"
   }
 }
 
