@@ -103,6 +103,53 @@ resource "aws_route53_record" "instance" {
   records = [aws_instance.main.*.private_ip[count.index]]
 }
 
+#####load balancer secuity group 
+
+resource "aws_security_group" "load-balancer" {
+  count = asg ? 1 = 0
+  name        = "${var.name}-${var.env}-alb-sg"
+  description = "${var.name}-${var.env}-alb-sg"
+  vpc_id      = var.vpc_id
+
+egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+ingress {
+    from_port        = 80
+    to_port          = 80
+    protocol         = "TCP"
+    cidr_blocks      = var.bastion_nodes
+
+  }
+
+  tags = {
+    Name = "${var.name}-${var.env}-alb-sg"
+  }
+}
+
+
+###Application balancer
+
+resource "aws_lb" "app balancer" {
+  count = var.asg ? 1 : 0
+  name               = "${var.name}.${var.env}"
+  internal           = true
+  load_balancer_type = "application"
+  security_groups    = [aws_security_groug.load-balancer.*.id[count.index]]  ####create security group for load balncer###
+  subnets            = var.subnets_ids                                        ###we already created for auto scaling in output of vpc module.
+
+  }
+
+  tags = {
+    Environment = "var.env"
+  }
+
+
 
 
 
