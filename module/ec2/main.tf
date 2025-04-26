@@ -106,7 +106,7 @@ resource "aws_route53_record" "instance" {
 #####load balancer secuity group 
 
 resource "aws_security_group" "load-balancer" {
-  count = asg ? 1 : 0
+  count = var.asg ? 1 : 0
   name        = "${var.name}-${var.env}-alb-sg"
   description = "${var.name}-${var.env}-alb-sg"
   vpc_id      = var.vpc_id
@@ -153,7 +153,7 @@ resource "aws_lb" "main" {
 
 ####target group
 resource "aws_lb_target_group" "main" {
-  count = ? 1 : 0
+  count = var.asg ? 1 : 0
   name     = "${var.name}.${var.env}-lb-tg"
   port     = var.allow_port
   protocol = "HTTP"
