@@ -1,5 +1,5 @@
 env = "dev"
-bastion_nodes = ["172.31.20.242/32"]
+bastion_nodes = ["172.31.29.63/32"] 
 
 vpc = {
     cidr = "10.10.0.0/16"
