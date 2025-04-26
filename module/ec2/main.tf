@@ -155,7 +155,7 @@ resource "aws_lb" "main" {
 ####target group
 resource "aws_lb_target_group" "main" {
   count = var.asg ? 1 : 0
-  name     = "${var.name}.${var.env}-lb-tg"
+  name     = "${var.name}-${var.env}-lb-tg"
   port     = var.allow_port
   protocol = "HTTP"
   vpc_id   = var.vpc_id       
