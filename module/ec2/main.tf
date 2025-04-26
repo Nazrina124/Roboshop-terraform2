@@ -106,7 +106,7 @@ resource "aws_route53_record" "instance" {
 #####load balancer secuity group 
 
 resource "aws_security_group" "load-balancer" {
-  count = asg ? 1 = 0
+  count = asg ? 1 : 0
   name        = "${var.name}-${var.env}-alb-sg"
   description = "${var.name}-${var.env}-alb-sg"
   vpc_id      = var.vpc_id
@@ -135,7 +135,7 @@ ingress {
 
 ###Application balancer
 
-resource "aws_lb" "app balancer" {
+resource "aws_lb" "main" {
   count = var.asg ? 1 : 0
   name               = "${var.name}.${var.env}"
   internal           = true
