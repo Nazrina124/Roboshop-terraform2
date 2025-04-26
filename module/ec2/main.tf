@@ -141,7 +141,7 @@ resource "aws_lb" "main" {
   name               = "${var.name}.${var.env}-alb"
   internal           = true
   load_balancer_type = "application"
-  security_groups    = [aws_security_groug.load-balancer.*.id[count.index]]  ####create security group for load balncer###
+  security_groups    = [aws_security_group.load-balancer.*.id[count.index]]  ####create security group for load balncer###
   subnets            = var.subnets_ids                                        ###we already created for auto scaling in output of vpc module.
 
 
