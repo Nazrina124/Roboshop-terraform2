@@ -15,3 +15,11 @@
     variable "asg" {}
     variable "vault_token" {}
     variable "zone_id" {}
+    variable "internal" {
+      default = null
+    }
+
+    variable "lb_subnet_ref" {
+        default = []
+    }
+

@@ -124,7 +124,7 @@ ingress {
     from_port        = 80
     to_port          = 80
     protocol         = "TCP"
-    cidr_blocks      = var.bastion_nodes
+    cidr_blocks      = var.name == "frontend" ? ["0.0.0.0/0"] : var.allow_lb_sg_cidr
 
   }
 
@@ -139,10 +139,10 @@ ingress {
 resource "aws_lb" "main" {
   count = var.asg ? 1 : 0
   name               = "${var.name}-${var.env}"
-  internal           = true
+  internal           = var.internal
   load_balancer_type = "application"
   security_groups    = [aws_security_group.load-balancer.*.id[count.index]]  ####create security group for load balncer####
-  subnets            = var.subnets_ids                                        ###we already created for auto scaling in output of vpc module.
+  subnets            = var.lb_subnet_ref                                       ###we already created for auto scaling in output of vpc module.
 
 
 
