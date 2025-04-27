@@ -124,7 +124,7 @@ ingress {
     from_port        = 80
     to_port          = 80
     protocol         = "TCP"
-    cidr_blocks      = allow_lb_sg_cidr
+    cidr_blocks      = var.allow_lb_sg_cidr
 
   }
 
