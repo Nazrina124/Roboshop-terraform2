@@ -15,6 +15,7 @@ vpc = {
 }
 
 apps = {
+  
   frontend = {
     subnet_ref = "web"
     instance_type = "t3.small"
@@ -47,7 +48,7 @@ apps = {
     lb_internal = true
     lb_subnet_ref = "app"
   }
-}
+
 
 cart = {
     subnet_ref = "app"
@@ -114,6 +115,7 @@ payment = {
     lb_subnet_ref = "app"
   }
 
+}
 
 db = {
     mongo = {
