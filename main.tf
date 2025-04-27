@@ -30,7 +30,7 @@ module "vpc" {
    zone_id        = var.zone_id
    asg          = true
    internal  = each.value["lb_internal"]
-   lb_subnet_ref = module.vpc.[subnets.each.value["lb_subnet_ref"]]
+   lb_subnet_ref = module.vpc[subnets.each.value["lb_subnet_ref"]]
  }
 
  module "db" {
