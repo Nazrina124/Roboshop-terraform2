@@ -33,12 +33,6 @@ ingress {
 }
 
 
-
-tags = {
-    Name = "${var.name}-${var.env}-sg"
-  }  
-
-
 resource "aws_instance" "main" {
     ami  = data.aws_ami.rhel9.image_id    
     instance_type = var.instance_type
