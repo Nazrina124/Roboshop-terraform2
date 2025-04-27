@@ -55,7 +55,6 @@ resource "aws_launch_template" "main" {
 
 ##### Auto scaling
 resource "aws_autoscaling_group" "main" {
-  name = "${var.name}-${var.env}-asg"  
   desired_capacity   = var.capacity["desired"]
   max_size           = var.capacity["max"]
   min_size           = var.capacity["min"]
