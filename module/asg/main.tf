@@ -176,7 +176,7 @@ resource "aws_lb_listener" "public-http" {
  }
 }
 
-resource "aws_lb_listener" "public-http" {
+resource "aws_lb_listener" "public-https" {
    count             = var.internal ? 0 : 1   ###### if app is external create https
   load_balancer_arn = aws_lb.main.arn
   port              = "80"
