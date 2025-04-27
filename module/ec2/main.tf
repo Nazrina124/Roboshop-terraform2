@@ -159,7 +159,7 @@ resource "aws_lb_target_group" "main" {
   port     = var.allow_port
   protocol = "HTTP"
   vpc_id   = var.vpc_id       
-}
+
 
 health_check {
   enabled             = true
@@ -168,7 +168,9 @@ health_check {
   interval            = 5
   path                = "/health"
   timeout             = 3
+  }
 }
+    
 
 
 resource "aws_lb_listener" "front_end" {
