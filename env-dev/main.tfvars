@@ -2,6 +2,7 @@ env = "dev"
 bastion_nodes = ["172.31.29.63/32"]
 zone_id = "Z03035903COPLEGQ5980F"
 
+
 vpc = {
     cidr = "10.10.0.0/16"
     public_subnets = ["10.10.0.0/24" , "10.10.1.0/24"]
@@ -31,6 +32,7 @@ apps = {
 
     lb_internal = false
     lb_subnet_ref = "public"
+    acm_https_arn = "arn:aws:acm:us-east-1:640168456211:certificate/2bae4e22-20ac-4210-900a-dcade7759795"
   }
 
    catalogue = {
@@ -38,7 +40,7 @@ apps = {
     instance_type = "t3.small"
     allow_port    = 8080
     allow_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ###### server security  access to app 
-    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ####load balncer security group   access to web
+    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24" , 10.10.4.0/24" , "10.10.5.0/24]    ####load balncer security group   access to web also catalogue has to talk to fronted.
     capacity = {
         desired = 1
         max     = 1
@@ -47,6 +49,7 @@ apps = {
     }
     lb_internal = true
     lb_subnet_ref = "app"
+    acm_https_arn = null
   }
 
 
@@ -55,7 +58,7 @@ cart = {
     instance_type = "t3.small"
     allow_port    = 8080
     allow_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ###### server security  access to app 
-    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ####load balncer security group   access to web
+    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24" , 10.10.4.0/24" , "10.10.5.0/24]    ####load balncer security group   access to web
     capacity = {
         desired = 1
         max     = 1
@@ -64,6 +67,7 @@ cart = {
     }
     lb_internal = true
     lb_subnet_ref = "app"
+    acm_https_arn = null
   }
 
 user = {
@@ -71,7 +75,7 @@ user = {
     instance_type = "t3.small"
     allow_port    = 8080
     allow_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ###### server security  access to app 
-    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ####load balncer security group   access to web
+    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24" , 10.10.4.0/24" , "10.10.5.0/24]    ####load balncer security group   access to web
     capacity = {
         desired = 1
         max     = 1
@@ -80,6 +84,7 @@ user = {
     }
     lb_internal = true
     lb_subnet_ref = "app"
+    acm_https_arn = null
   }
 
 
@@ -88,7 +93,7 @@ user = {
     instance_type = "t3.small"
     allow_port    = 8080
     allow_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ###### server security  access to app 
-    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ####load balncer security group   access to web
+    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24" , 10.10.4.0/24" , "10.10.5.0/24]    ####load balncer security group   access to web
     capacity = {
         desired = 1
         max     = 1
@@ -97,6 +102,7 @@ user = {
     }
     lb_internal = true
     lb_subnet_ref = "app"
+    acm_https_arn = null
   }
 
 payment = {
@@ -104,7 +110,7 @@ payment = {
     instance_type = "t3.small"
     allow_port    = 8080
     allow_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ###### server security  access to app 
-    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24"]    ####load balncer security group   access to web
+    allow_lb_sg_cidr = ["10.10.4.0/24" , "10.10.5.0/24" , 10.10.4.0/24" , "10.10.5.0/24]    ####load balncer security group   access to web
     capacity = {
         desired = 1
         max     = 1
@@ -113,6 +119,7 @@ payment = {
     }
     lb_internal = true
     lb_subnet_ref = "app"
+    acm_https_arn = null
   }
 
 }

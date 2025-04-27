@@ -14,7 +14,7 @@ module "vpc" {
 }
  module "apps" {
     depends_on = [module.db , module.vpc]
-    source = "./module/ec2"
+    source = "./module/asg"
 
     for_each      = var.apps
    name          = each.key
@@ -32,6 +32,7 @@ module "vpc" {
    internal  = each.value["lb_internal"]
    lb_subnet_ids = module.vpc.subnets[each.value["lb_subnet_ref"]]
    allow_lb_sg_cidr = each.value["allow_lb_sg_cidr"]
+   acm_https_arn  = each.value[acm_https_arn]
 
  }
 
