@@ -19,7 +19,7 @@
       default = null
     }
 
-    variable "lb_subnet_ref" {
-        default = []
-    }
+    variable "lb_subnet_ids" {
+   default = []
+ }
 
