@@ -59,7 +59,7 @@ resource "aws_autoscaling_group" "main" {
   max_size           = var.capacity["max"]
   min_size           = var.capacity["min"]
   vpc_zone_identifier = var.subnets_ids
-  target_group_arns = [aws_lb_target_group.main.arn]
+  target_group_arns = [aws_lb_target_group.main[0].arn]
 
   launch_template {
     id      = aws_launch_template.main.id
