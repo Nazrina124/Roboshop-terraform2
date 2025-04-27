@@ -36,7 +36,7 @@ ingress {
 resource "aws_instance" "main" {
     ami  = data.aws_ami.rhel9.image_id    
     instance_type = var.instance_type
-    subnet_id = var.subnets_ids[0]
+    subnet_id = var.subnet_ids[0]
     vpc_security_group_ids = [aws_security_group.main.id]
     
     user_data = base64encode(templatefile("${path.module}/userdata.sh",{
