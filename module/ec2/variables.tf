@@ -23,3 +23,8 @@
        default = []
  }
 
+ variable "allow_lb_sg_cidr" {
+    default = []
+
+ }
+
