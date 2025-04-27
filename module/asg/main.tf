@@ -39,7 +39,7 @@ resource "aws_launch_template" "main" {
     name = "${var.name}-${var.env}-lt"
     image_id = data.aws_ami.rhel9.image_id
     instance_type = var.instance_type
-    vpc_security_group_ids = [aws_security_group.allow_tls.id]
+    vpc_security_group_ids = [aws_security_group.main.id]
 
  user_data = base64encode(templatefile("${path.module}/userdata.sh",{
         env = var.env
@@ -49,7 +49,7 @@ resource "aws_launch_template" "main" {
 }))
 
  tags = {
-    Name = "${var.name}-${var.env}-alb-sg"
+    Name = "${var.name}-${var.env}-lt"
   }
 }
 
@@ -93,8 +93,8 @@ egress {
   }
 
 ingress {
-    from_port        = 80
-    to_port          = 80
+    from_port        = 443
+    to_port          = 443
     protocol         = "TCP"
     cidr_blocks      = var.allow_lb_sg_cidr
 
@@ -141,6 +141,9 @@ health_check {
   }
 }
     
+
+
+
 resource "aws_lb_listener" "internal-http" {
   count             = var.internal ? 1 : 0       ##### function if app is internal create http 
   load_balancer_arn = aws_lb.main[count.index].arn
@@ -149,7 +152,7 @@ resource "aws_lb_listener" "internal-http" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.main.arn
+    target_group_arn =  aws_lb_target_group.main[0].arn
   }
 }
 
@@ -163,9 +166,10 @@ resource "aws_lb_listener" "public-http" {
   
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.main.arn
+    target_group_arn = aws_lb_target_group.main[0].arn
  }
 }
+
 ####DNS record for frontend for load balancer
 
 resource "aws_route53_record" "lb" {
