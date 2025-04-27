@@ -144,7 +144,7 @@ health_check {
 
 resource "aws_lb_listener" "internal-http" {
   count             = var.internal ? 1 : 0       ##### function if app is internal create http 
-  load_balancer_arn = aws_lb.main[count.index].arn
+  load_balancer_arn = aws_lb.main.arn
   port              = "80"
   protocol          = "HTTP"
 
@@ -156,7 +156,7 @@ resource "aws_lb_listener" "internal-http" {
 
 resource "aws_lb_listener" "public-http" {
   count             = var.internal ? 0 : 1   ###### if app is external create https
-  load_balancer_arn = aws_lb.main[count.index].arn
+  load_balancer_arn = aws_lb.main.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
