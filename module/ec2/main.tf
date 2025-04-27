@@ -161,6 +161,16 @@ resource "aws_lb_target_group" "main" {
   vpc_id   = var.vpc_id       
 }
 
+health_check {
+    enabled
+    healthy_thrshold = 2
+    unhealthy_thrshold = 2
+    interval = 5
+    path = "/health"
+    timeout = 3
+}
+
+
 resource "aws_lb_listener" "front_end" {
   count             = var.asg ? 1 : 0
   load_balancer_arn = aws_lb.main[count.index].arn
