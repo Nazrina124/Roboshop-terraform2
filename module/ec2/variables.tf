@@ -20,6 +20,6 @@
     }
 
     variable "lb_subnet_ids" {
-   default = []
+       default = []
  }
 
