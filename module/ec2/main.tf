@@ -162,12 +162,12 @@ resource "aws_lb_target_group" "main" {
 }
 
 health_check {
-    enabled
-    healthy_thrshold = 2
-    unhealthy_thrshold = 2
-    interval = 5
-    path = "/health"
-    timeout = 3
+  enabled             = true
+  healthy_threshold   = 2
+  unhealthy_threshold = 2
+  interval            = 5
+  path                = "/health"
+  timeout             = 3
 }
 
 
@@ -182,6 +182,18 @@ resource "aws_lb_listener" "front_end" {
     target_group_arn = aws_lb_target_group.main.*.arn[count.index]
   }
 }
+
+####DNS record for frontend for load balancer
+
+resource "aws_route53_record" "lb" {
+  count = var.asg ? 1 : 0
+  zone_id = var.zone_id
+  name    = "${var.name}.${var.env}"
+  type    = CNAME
+  ttl     = 10
+  records = [aws_lb.main.*.dns_name[count.index]]
+}
+
 
 
 
