@@ -119,7 +119,7 @@ resource "aws_lb_listener_rule" "listner_rule" {
   }
 
   condition {
-    host-header {
+    host_header {
     values = [aws_route53_record.lb.fqdn] #####    fqdn  meaning fully defined domain name
   }
  }
