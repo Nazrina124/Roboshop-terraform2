@@ -47,7 +47,7 @@ apps = {
 
     }
     aws_lb_listener = "private"
-    lb_rule_priority = 2
+    lb_rule_priority = 1
   }
 
 
@@ -64,7 +64,7 @@ cart = {
 
     }
     aws_lb_listener  = "private"
-    lb_rule_priority = 3
+    lb_rule_priority = 2
   }
 
 user = {
@@ -80,7 +80,7 @@ user = {
 
     }
     aws_lb_listener = "private"
-    lb_rule_priority = 4
+    lb_rule_priority = 3
   }
 
 
@@ -97,7 +97,7 @@ user = {
 
     }
     aws_lb_listener  ="private"
-    lb_rule_priority = 5
+    lb_rule_priority = 4
   }
 
 payment = {
@@ -113,7 +113,7 @@ payment = {
 
     }
     aws_lb_listener  = "private"
-    lb_rule_priority = 6
+    lb_rule_priority = 5
 
   }
 
