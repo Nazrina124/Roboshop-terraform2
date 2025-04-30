@@ -154,7 +154,7 @@ load_balancers = {
     allow_lb_sg_cidr = ["10.10.2.0/24", "10.10.3.0/24", "10.10.4.0/24", "10.10.5.0/24"]    ####load balncer security group   access to web
     subnet_ref   = "apps"
     acm_https_arn = null
-    listner_port              = "80"
+    listener_port              = "80"
     listner_protocol          = "HTTP"
     ssl_policy        = null
 
@@ -166,7 +166,7 @@ load_balancers = {
     allow_lb_sg_cidr = ["0.0.0.0/0"]
     subnet_ref    =  "public"
     acm_https_arn =  "arn:aws:acm:us-east-1:640168456211:certificate/2bae4e22-20ac-4210-900a-dcade7759795"
-    listner_port              = "443"
+    listener_port              = "443"
     listner_protocol          = "HTTPS"
     ssl_policy        = "ELBSecurityPolicy-2016-08"
   
