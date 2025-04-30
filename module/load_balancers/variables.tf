@@ -7,4 +7,5 @@ variable "acm_https_arn" {}
 variable  "listner_protocol" {}
 variable  "ssl_policy" {}
 variable  "listener_port" {}
-
+variable "name" {}
+variable "env" {}
