@@ -71,7 +71,7 @@ resource "aws_lb_listener" "main" {
     port              = var.listener_port
     protocol          = var.listner_protocol
     ssl_policy        = var.ssl_policy
-    certificate_arn   = var.listner_certificate_arn
+    certificate_arn   = var.acm_https_arn
 
   
 
