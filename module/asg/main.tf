@@ -106,7 +106,7 @@ resource "aws_route53_record" "lb" {
   name    = "${var.name}.${var.env}"
   type    = "CNAME"
   ttl     = 10
-  dns_name = [var.dns_name]
+  records = [var.dns_name]
 }
 
 ####Rules for listner
