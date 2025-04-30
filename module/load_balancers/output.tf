@@ -4,6 +4,6 @@ output "dns_name"{
 }
 
 output "listner_arn"{
-    value = aws_lb_listener.main
+    value = aws_lb_listener.main.arn
 
 }
