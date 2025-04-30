@@ -68,7 +68,6 @@ resource "aws_lb_listener" "public-http" {
  
 
 resource "aws_lb_listener" "main" {
-   count             = var.internal ? 0 : 1   ###### if app is external create https
     load_balancer_arn = aws_lb.main.arn
     port              = var.listener_port
     protocol          = var.listner_protocol
