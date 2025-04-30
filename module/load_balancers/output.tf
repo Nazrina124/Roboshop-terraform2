@@ -3,7 +3,7 @@ output "dns_name"{
 
 }
 
-output "listner_arn"{
+output "listener_arn"{
     value = aws_lb_listener.main.arn
 
 }
