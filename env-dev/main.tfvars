@@ -147,7 +147,7 @@ db = {
 
 }
 
-load_balancers {
+load_balancers = {
   private = {
     internal    = true
     load_balancer_type  = "application"
