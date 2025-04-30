@@ -75,58 +75,6 @@ resource "aws_autoscaling_group" "main" {
 }
 
 
-#####load balancer secuity group 
-
-resource "aws_security_group" "load-balancer" {
-  name        = "${var.name}-${var.env}-alb-sg"
-  description = "${var.name}-${var.env}-alb-sg"
-  vpc_id      = var.vpc_id
-
-egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-ingress {
-    from_port        = 80
-    to_port          = 80
-    protocol         = "TCP"
-    cidr_blocks      = var.allow_lb_sg_cidr
-
-  }
-
-ingress {
-    from_port        = 443
-    to_port          = 443
-    protocol         = "TCP"
-    cidr_blocks      = var.allow_lb_sg_cidr
-
-  }
-
-  tags = {
-    Name = "${var.name}-${var.env}-alb-sg"
-  }
-}
-
-###Application balancer or load balancer
-
-resource "aws_lb" "main" {
-
-  name               = "${var.name}-${var.env}"
-  internal           = var.internal
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.load-balancer.id]  ####create security group for load balncer####
-  subnets            = var.lb_subnet_ids                                       ###we already created for auto scaling in output of vpc module.
-
-
-
-  tags = {
-    Environment = "${var.name}-${var.env}"
-  }
-}
 
 ####target group
 resource "aws_lb_target_group" "main" {
@@ -150,59 +98,32 @@ health_check {
 
 
 
-resource "aws_lb_listener" "internal-http" {
-  count             = var.internal ? 1 : 0       ##### function if app is internal create http 
-  load_balancer_arn = aws_lb.main.arn
-  port              = "80"
-  protocol          = "HTTP"
 
-  default_action {
-    type             = "forward"
-    target_group_arn =  aws_lb_target_group.main[0].arn
-  }
-}
-
-resource "aws_lb_listener" "public-http" {
-  count             = var.internal ? 0 : 1   ###### if app is external create https
-  load_balancer_arn = aws_lb.main.arn
-  port              = "443"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = var.acm_https_arn
-  
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.main[0].arn
- }
-}
-
-resource "aws_lb_listener" "public-https" {
-   count             = var.internal ? 0 : 1   ###### if app is external create https
-  load_balancer_arn = aws_lb.main.arn
-  port              = "80"
-  protocol          = "HTTP"
-
-  default_action {
-    type = "redirect"
-
-    redirect {
-      port        = "443"
-      protocol    = "HTTPS"
-      status_code = "HTTP_301"
-    }
-  }
-}
-
-####DNS record for frontend for load balancer
+####DNS record for load balancer
 
 resource "aws_route53_record" "lb" {
   zone_id = var.zone_id
   name    = "${var.name}.${var.env}"
   type    = "CNAME"
   ttl     = 10
-  records = [aws_lb.main.dns_name]
+  dns_name = [var.dns_name]
 }
 
+####Rules for listner
+resource "aws_lb_listener_rule" "listner_rule" {
+  listener_arn = var.listener_arn
+  priority     = var.lb_rule_priority
 
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.main.arn
+  }
+
+  condition {
+    host-header {
+    values = [aws_route53_record.lb.fqdn] #####fully defined domain name
+  }
+ }
+}
 
 
