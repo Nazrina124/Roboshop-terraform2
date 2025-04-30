@@ -6,4 +6,4 @@ variable "subnet_ids" {}
 variable "acm_https_arn" {}
 variable  "listner_protocol" {}
 variable  "listner_ssl_policy" {}
-variable "listener_arn" {}
+

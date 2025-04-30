@@ -70,7 +70,7 @@ resource "aws_lb_listener" "main" {
     load_balancer_arn = aws_lb.main.arn
     port              = var.listener_port
     protocol          = var.listner_protocol
-    ssl_policy        = var.listner_ssl_policy
+    ssl_policy        = var.ssl_policy
     certificate_arn   = var.listner_certificate_arn
 
   

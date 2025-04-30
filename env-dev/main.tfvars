@@ -156,7 +156,7 @@ load_balancers = {
     acm_https_arn = null
     listner_port              = "80"
     listner_protocol          = "HTTP"
-    ssl_policy        = "ELBSecurityPolicy-2016-08"
+    ssl_policy        = null
 
 
   }

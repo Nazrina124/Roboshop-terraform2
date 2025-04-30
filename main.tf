@@ -55,7 +55,7 @@ module "vpc" {
 
 module "load_balancers" {
     source = "./module/load_balancers"
-    Load_balancer = var.load_balancers
+    for_each  = var.load_balancers
     name = each.key
     internal = each.value["internal"]
     load_balancer_type = each.value["load_balancer_type"]
