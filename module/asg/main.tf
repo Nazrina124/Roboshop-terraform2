@@ -78,7 +78,6 @@ resource "aws_autoscaling_group" "main" {
 
 ####target group
 resource "aws_lb_target_group" "main" {
-  count = var.asg ? 1 : 0
   name     = "${var.name}-${var.env}-lb-tg"
   port     = var.allow_port
   protocol = "HTTP"
@@ -121,7 +120,7 @@ resource "aws_lb_listener_rule" "listner_rule" {
 
   condition {
     host-header {
-    values = [aws_route53_record.lb.fqdn] #####fully defined domain name
+    values = [aws_route53_record.lb.fqdn] #####    fqdn  meaning fully defined domain name
   }
  }
 }
