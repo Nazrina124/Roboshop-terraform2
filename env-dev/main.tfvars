@@ -30,7 +30,7 @@ apps = {
 
     }
 
-    aws_lb_listener  = "public"
+    lb_ref  = "public"
     lb_rule_priority = 1
   }
 
@@ -46,7 +46,7 @@ apps = {
         min     = 1
 
     }
-    aws_lb_listener = "private"
+    lb_ref = "private"
     lb_rule_priority = 1
   }
 
@@ -63,7 +63,7 @@ cart = {
         min     = 1
 
     }
-    aws_lb_listener  = "private"
+    lb_ref  = "private"
     lb_rule_priority = 2
   }
 
@@ -79,7 +79,7 @@ user = {
         min     = 1
 
     }
-    aws_lb_listener = "private"
+    lb_ref = "private"
     lb_rule_priority = 3
   }
 
@@ -96,7 +96,7 @@ user = {
         min     = 1
 
     }
-    aws_lb_listener  ="private"
+    lb_ref  ="private"
     lb_rule_priority = 4
   }
 
@@ -112,7 +112,7 @@ payment = {
         min     = 1
 
     }
-    aws_lb_listener  = "private"
+    lb_ref  = "private"
     lb_rule_priority = 5
 
   }
