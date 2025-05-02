@@ -41,6 +41,21 @@ resource "aws_launch_template" "main" {
     instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.main.id]
 
+    instance market options = {
+       market_type = "spot"
+
+    }
+
+    block_device_mappings {
+
+      device name = "/dev/sda1"
+
+    ebs {
+          volume_size = 30
+
+      }
+    }  
+
  user_data = base64encode(templatefile("${path.module}/userdata.sh",{
         env = var.env
         role_name = var.name
