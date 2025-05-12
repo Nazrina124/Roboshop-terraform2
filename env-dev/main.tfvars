@@ -50,7 +50,7 @@ eks = {
       max_size = 3      ### no of nodes max
       min_size = 1      ### no of nodes min
       instance_types = ["t3.medium"]
-      capacity_type      = "spot"
+      capacity_type      = "SPOT"
 
     }
   }
