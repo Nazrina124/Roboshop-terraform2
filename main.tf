@@ -14,30 +14,28 @@ module "vpc" {
 }
  
 
- module "db" {
-    depends_on = [module.vpc]
-    source = "./module/ec2"
-
-    for_each      = var.db
-   name          = each.key
-   instance_type = each.value["instance_type"]
-   allow_port    = each.value["allow_port"]
-   allow_sg_cidr = each.value["allow_sg_cidr"]
-   subnet_ids   = module.vpc.subnets[each.value["subnet_ref"]]
-   vpc_id        = module.vpc.vpc_id
-   env           = var.env
-   bastion_nodes = var.bastion_nodes
-   vault_token    = var.vault_token
-   zone_id        = var.zone_id
-
- }
+ # module "db" {
+#   depends_on = [module.vpc]
+#   source     = "./modules/ec2"
+#
+#   for_each      = var.db
+#   name          = each.key
+#   instance_type = each.value["instance_type"]
+#   allow_port    = each.value["allow_port"]
+#   allow_sg_cidr = each.value["allow_sg_cidr"]
+#   subnet_ids    = module.vpc.subnets[each.value["subnet_ref"]]
+#   vpc_id        = module.vpc.vpc_id
+#   env           = var.env
+#   bastion_nodes = var.bastion_nodes
+#   vault_token   = var.vault_token
+#   zone_id       = var.zone_id
+# }
 
 module "eks" {
-  depends_on = [module.eks]
-  source = "./module/ec2"
-
+  depends_on = [module.vpc]
+  source = "./modules/ec2"
   env = var.env
-  subnet_ids = module.vpc.subnets[each.value["subnet_ref"]]
+  subnet_ids = module.vpc.app_subnet_ids
   node_groups = var.eks["node_groups"]
   eks_version = var.eks["eks_version"]
 }
