@@ -17,7 +17,7 @@ module "vpc" {
 
 module "db" {
   depends_on = [module.vpc]
-  source     = "./modules/ec2"
+  source     = "./module/ec2"
 
   for_each      = var.db
   name          = each.key
