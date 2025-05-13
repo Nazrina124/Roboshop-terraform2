@@ -38,6 +38,9 @@ module "eks" {
   subnet_ids = module.vpc.app_subnet_ids
   node_groups = var.eks["node_groups"]
   eks_version = var.eks["eks_version"]
-  adds_on     = var.eks["adds_on"]
+  add_ons     = var.eks["add_ons"]
 }
+
+
+#### Command to config cluster aws eks update-kubeconfig --name dev-eks
    
