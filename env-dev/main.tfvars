@@ -69,7 +69,7 @@ eks-iam-access = {
 
 sso-access = {
 
-    principal_arn =  "arn:aws:iam::6401-6845-6211:root"
+    principal_arn =  "arn:aws:iam::640168456211:role/aws-service-role/sso.amazonaws.com/AWSServiceRoleForSSO"
     policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
     kubernetes_groups = []
   }
