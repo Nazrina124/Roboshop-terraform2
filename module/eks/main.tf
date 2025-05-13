@@ -25,3 +25,9 @@ resource "aws_eks_cluster" "main" {
 
  }
 
+resource "aws_eks_addon" "addons" {
+  for_each    =  var.adds_on
+  cluster_name = aws_eks_cluster.main.name
+  addon_name    = each.key
+  addon_version  = each.value
+}

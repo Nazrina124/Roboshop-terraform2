@@ -44,7 +44,7 @@ db = {
 
 
 eks = {
-  eks_version = 1.31
+  eks_version = "1.30"
   node_groups = {
     main-spot = {
       max_size = 3      ### no of nodes max
@@ -53,6 +53,12 @@ eks = {
       capacity_type      = "SPOT"
 
     }
+  adds_on = {
+    vpc-cni                = "v1.18.3-eksbuild.2"
+
+
+  }
+  
   }
 
 }
