@@ -58,10 +58,27 @@ eks = {
     vpc-cni                = "v1.18.3-eksbuild.2"
     kube-proxy = "v1.30.3-eksbuild.2"
     coredns    = "v1.11.1-eksbuild.11"
+  }
+
+eks-iam-access = {
+  workstation = {
+    principal_arn = "arn:aws:iam::640168456211:role/workstation"
+    policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+    kubernetes_groups = []
+  }
+
+sso-access = {
+  workstation = {
+    principal_arn =  "arn:aws:iam::6401-6845-6211:root"
+    policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+    kubernetes_groups = []
+  }
+
+}
 
   }
   
-  }
+  
 
 
 

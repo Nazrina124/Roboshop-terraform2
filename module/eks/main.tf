@@ -9,7 +9,7 @@ resource "aws_eks_cluster" "main" {
 
   access_config {
     authentication_mode                         = "API_AND_CONFIG_MAP"  
-
+    bootstrap_cluster_creator_admin_permissions = true
   }
 
 }
@@ -36,4 +36,17 @@ resource "aws_eks_addon" "addons" {
   cluster_name = aws_eks_cluster.main.name
   addon_name    = each.key
   addon_version  = each.value
+  resolve_conflicts_on_update = "OVERWRITE"
+}
+
+
+modue "eks-iam-access" {
+   source = "./eks-iam-access"
+   for_each = var.eks["eks-iam-access"]
+   
+   cluster_name  = aws_eks_cluster.main
+   principal_arn = eacch.value["principal_arn"]
+   policy_arn    = each.value["policy_arn"]
+   kubernetes_groups = each.value["kubernetes_groups"]
+
 }
