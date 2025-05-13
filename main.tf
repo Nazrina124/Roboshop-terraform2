@@ -43,4 +43,6 @@ module "eks" {
 
 
 #### Command to config cluster aws eks update-kubeconfig --name dev-eks
+
+### additional githubrunner access for cluster. hence we have to add access_config
    
