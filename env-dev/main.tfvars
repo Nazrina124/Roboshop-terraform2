@@ -68,7 +68,7 @@ eks-iam-access = {
   }
 
 sso-access = {
-  workstation = {
+
     principal_arn =  "arn:aws:iam::6401-6845-6211:root"
     policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
     kubernetes_groups = []
@@ -77,6 +77,7 @@ sso-access = {
 }
 
   }
+
   
   
 
