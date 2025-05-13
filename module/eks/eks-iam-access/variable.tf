@@ -1,3 +1,3 @@
 variable "principal_arn" {}
-variable "clusture_name" {}
-variable "kubernetes_groups" {}
+variable "cluster_name" {}
+variable "kubernetes_groups" {}cluster_name
