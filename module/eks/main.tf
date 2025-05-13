@@ -40,7 +40,7 @@ resource "aws_eks_addon" "addons" {
 }
 
 
-modue "eks-iam-access" {
+module "eks-iam-access" {
    source = "./eks-iam-access"
    for_each = var.eks["eks-iam-access"]
    
