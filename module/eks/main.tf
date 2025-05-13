@@ -45,7 +45,7 @@ module "eks-iam-access" {
    for_each = var.eks-iam-access
    
    cluster_name  = aws_eks_cluster.main.name
-   principal_arn = eacch.value["principal_arn"]
+   principal_arn = each.value["principal_arn"]
    policy_arn    = each.value["policy_arn"]
    kubernetes_groups = each.value["kubernetes_groups"]
 
